@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>parseInt(), parseFloat()</title>
+<script type="text/javascript">
+	let num = '1234';
+	let won = '1000원';
+	let won2 = '원1000';
+	
+	let num2 = '24.56';
+	let dallar = '1.5$';
+	let dallar2 = '$1.5';
+	
+	document.write(Number(num)+'<br>');
+	document.write(Number(won)+'<br>'); // NaN 출력
+	document.write(parseInt(num)+'<br>');
+	document.write(parseInt(won)+'<br>'); // 맨 앞이 숫자라서 숫자로 변환
+	document.write(parseInt(won2)+'<br>');// 맨 앞이 문자여서 NaN으로 인식
+	document.write('---------------<br>');
+	
+	document.write(Number(num2) + '<br>');
+	document.write(Number(dallar) + '<br>');
+	document.write(parseFloat(num2)+ '<br>');
+	document.write(parseFloat(dallar) + '<br>');
+	document.write(parseFloat(dallar2) + '<br>');
+	document.write('---------------<br>');
+	
+	let no1 = '10';
+	let no2 = '3.67';
+	
+	document.write(parseFloat(no1) + '<br>');
+	document.write(parseInt(no2) + '<br>');//소수점 아래 절삭
+	
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

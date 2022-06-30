@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>file</title>
+<script type="text/javascript">
+	window.onload=function(){
+		//파일을 선택할 때
+		document.getElementById('file').onchange=function(){
+			/*
+			선택한 파일의 File객체 얻기
+			<input type="file"> 사용시 속성을 multiple로 지정하면
+			복수의 파일을 전송할 수 있기 때문에 복수의 파일에 대응하기 위해
+			파일 정보를 배열로 관리
+			 파일 하나 업로드시 files[0], 파일 두 개 업로드시 files[0],files[1]에서 파일 정보를 얻음
+			*/
+			let file = this.files[0]; //file태그는 다중선택이 가능한 옵션이 있어서 선택한 파일이 배열에 저장된다
+			//파일의 이름 출력
+			alert(file.name+'을 선택했습니다.');
+			
+		};
+		
+		//읽기 버튼을 클릭할 때
+		document.getElementById('btnStart').onclick=function(){
+			readProcess();
+		};
+	}; // end of load
+	
+	function readProcess(){
+		//선택한 파일에 대한 정보 읽기
+		let file = document.getElementById('file').files[0];
+		
+		if(!file){ // file == undefined
+			alert('파일을 선택하세요!');
+			return;
+		}
+		
+		//정보 출력
+		document.getElementById('filename').textContent = file.name;
+		document.getElementById('filesize').textContent = '('+file.size+'bytes)';
+		document.getElementById('filetype').textContent = file.type;
+		document.getElementById('filedate').textContent = file.lastModifiedDate.toLocaleString();
+		
+		//파일의 내용 출력
+		let reader = new FileReader(); //파일 읽기 기능 제공
+		
+		//인코딩 정보 읽기
+		let encodeList = document.getElementById('encoding');
+		let encoding = encodeList.value; //선택한 값 반환
+		
+		//선택한 파일을 읽어서 문자열로 반환
+		//				 파일객체, 인코딩
+		reader.readAsText(file,encoding);
+		//파일을 다 읽어들여서 문자열로 반환할 수 있는 준비가 완료되면
+		//속성에 연결된 함수를 호출
+		reader.onload=function(){
+			let disp = document.getElementById('contents');
+			disp.value = reader.result;// 파일의 내용 반환
+		};
+		//파일을 읽을 때 에러가 발생
+		reader.onerror=function(){
+			/*
+			NOT_FOUND_ERR     1 파일을 찾을 수 없을 때
+			SECURITY_ERR      2 웹애플리케이션에서 사용하기엔 보안상 좋지 않다고 판단했을 때
+			ABORT_ERR         3 파일 읽기 중단
+			NOT_READABLE_ERR  4 파일 읽기 권한이 없을 때
+			ENCODING_ERR      5 Data URL 길이가 URL 길이의 상한을 초과할 때
+			*/
+			if(reader.error.code === reader.error.NOT_READABLE_ERR){
+				alert('파일 읽기 권한 없음');
+			}else if(reader.error.code === reader.error.ABORT_ERR){
+				alert('파일 읽기 중지되었음');
+			}else{
+				alert('파일 읽기 실패!');
+			}
+		};
+	}
+	
+</script>
+</head>
+<body>
+	<h2>현재 시스템의 파일 읽기</h2>
+	<input type="file" id="file" accept="text/*"> <!-- multiple="multiple" : 파일 여러개 선택 -->
+	<select id="encoding">
+		<option>EUC-KR</option><!-- 한글만 인코딩 -->
+		<option>UTF-8</option><!-- 한글과 여러 언어들 -->
+	</select>
+	<button id="btnStart">읽기</button>
+	<br>
+	<div>
+		<span id="filename">파일명</span>
+		<span id="filesize">파일크기</span>
+		<span id="filetype">파일타입</span>
+		<span id="filedate">파일의 마지막 갱신 일시</span>
+	</div>
+	<textarea rows="10" cols="50" id="contents" readonly="readonly"></textarea>
+</body>
+</html>

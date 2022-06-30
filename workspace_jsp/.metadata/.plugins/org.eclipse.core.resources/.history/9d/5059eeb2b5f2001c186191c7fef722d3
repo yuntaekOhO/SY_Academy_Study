@@ -1,0 +1,22 @@
+package kr.web.ch02;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/greetingName")
+public class GreetingServlet extends HttpServlet {
+	@Override
+	public void doGet(HttpServletRequest request,
+						HttpServletResponse response)throws ServletException,IOException{
+		//클라이언트가 전송한 데이터 반환
+		String name = request.getParameter("name");
+		//문서 타입 및 캐릭터셋 지정
+		
+		//HTML 출력을 위한 출력스트림 생성
+	}
+}

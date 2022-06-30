@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>스크립트 태그에서 이벤트 연결</title>
+<script type="text/javascript">
+	window.onload = function(){
+		//div
+		let gubun = document.getElementById('yumu');
+		//input tag
+		let radios = document.getElementsByTagName('input');
+		//for문은 모든 radio에 이벤트연결을 해야하기 때문에 사용
+		for(let i=0;i<radios.length;i++){
+			//이벤트 연결
+			radios[i].onclick = function(){
+				if(radios[0].checked){//무료
+					//div 숨기기
+					gubun.style.display = 'none';
+				}else{//유료
+					//div 표시
+					gubun.style.display = '';
+				}
+			};
+		}
+	};
+</script>
+</head>
+<body>
+<form>
+	<input type="radio" name="price" checked value="0">무료
+	<input type="radio" name="price" value="1">유료
+</form>
+<div id="yumu" style="display:none;">
+유료회원 가입비는 10,000원
+</div>
+</body>
+</html>

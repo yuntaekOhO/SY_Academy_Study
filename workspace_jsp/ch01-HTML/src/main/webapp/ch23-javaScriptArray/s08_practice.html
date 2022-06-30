@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>실습</title>
+<script type="text/javascript">
+/*
+ * 
+ 성적을 관리하는 배열을 생성. 5과목(국어,영어,수학,과학,미술) 배열명은 score
+ 총점(getSum), 평균(getAvg)은 함수를 만들어서 활용
+ [출력예시]
+ 총점 : 369점
+ 평균 : 95.494점
+ */
+ 	let score = [];
+ 	
+ 	function getSum(){
+	 	let sum = 0;
+	 	for(let i in score){
+	 		sum += score[i]; 
+	 	}
+	 	return sum;
+ 	}
+ 	function getAvg(){
+ 		return getSum() / score.length;
+ 	}
+
+ 	let korean = Number(prompt('국어',''));
+ 	let english = Number(prompt('영어',''));
+ 	let math = Number(prompt('수학',''));
+ 	let science = Number(prompt('과학',''));
+ 	let art = Number(prompt('미술',''));
+ 	
+ 	if(korean < 0 || korean > 100 || english < 0 || english > 100 || math < 0 ||
+ 			math > 100 || science < 0 || science > 100 || art < 0 || art > 100){
+ 		document.write('성적은 0 ~ 100 사이입니다.');
+ 	}else{
+ 		score.push(korean,english,math,science,art);
+ 	 	
+ 	 	document.write('총점 : ' + getSum() + '<br>');
+ 	 	document.write('평균 : ' + getAvg() + '<br>');
+ 	}
+ 	
+</script>
+</head>
+<body>
+
+</body>
+</html>

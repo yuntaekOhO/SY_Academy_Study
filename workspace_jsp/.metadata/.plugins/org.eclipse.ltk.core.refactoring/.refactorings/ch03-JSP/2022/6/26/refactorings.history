@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;ch03-JSP/src/main/webapp/ch02-nestedObject/s07_gugudan.jsp&apos; to &apos;s07_gugudanForm.jsp&apos;" description="Rename resource &apos;s07_gugudan.jsp&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/main/webapp/ch02-nestedObject/s07_gugudan.jsp" name="s07_gugudanForm.jsp" stamp="1656057830304" updateReferences="true"/>
+</session>

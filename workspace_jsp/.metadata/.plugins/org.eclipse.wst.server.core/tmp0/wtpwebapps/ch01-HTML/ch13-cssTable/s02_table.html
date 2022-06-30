@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>table</title>
+<style type="text/css">
+ table caption, table thead {
+ 	font: italic 1.25em 명조체, sans serif;
+ }
+ tr {
+ 	font-size: 1.25em;
+ }
+ td {
+ 	vertical-align: top;
+ 	padding: .5em;
+ 	background-color: rgba(200,200,180,.25);
+ 	border: 1px solid rgb(200,200,180);
+ }
+ table {
+ 	/* 테이블의 제목 위치 지정 */
+ 	caption-side: bottom;
+ 	width: 75%;
+ 	margin: 0 auto;
+ }
+</style>
+</head>
+<body>
+<table>
+	<caption>파티 리스트</caption>
+	<thead>
+		<tr>
+			<th>이름</th>
+			<th>설명</th>
+			<th>삭제</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>풍선</td>
+			<td>다양한 풍선을 파티에 활용</td>
+			<td>&otimes;</td>
+		</tr>
+		<tr>
+			<td>리본</td>
+			<td>리본을 이용한 악세서리 제작</td>
+			<td>&otimes;</td>
+		</tr>
+		<tr>
+			<td>방울</td>
+			<td>여러 종류의 방울 장식</td>
+			<td>&otimes;</td>
+		</tr>
+	</tbody>
+</table>
+</body>
+</html>

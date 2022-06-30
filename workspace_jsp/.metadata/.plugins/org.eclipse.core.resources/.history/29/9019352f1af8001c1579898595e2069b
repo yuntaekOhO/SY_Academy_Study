@@ -1,0 +1,3 @@
+<%@ page language="java" contentType="text/plain; charset=UTF-8"
+    pageEncoding="UTF-8"%><%--cntentType="text/plain" 은 텍스트로 인식하게 함 --%>
+Hello Ajax!!

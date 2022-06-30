@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>세션스토리지</title>
+<script type="text/javascript">
+/*
+ 세션스토리지는 브라우저가 열려있는 동안 모든 데이터를 기억하고 있다가
+ 탭(또는 창)을 닫으면 모두 지워지는 저장 공간
+ */
+ 	window.onload=function(){
+		load();
+		
+		let save = document.getElementById('save');
+		save.onclick=function(){
+			let first = document.getElementById('first');
+			//세션스토리지에 데이터 저장
+			sessionStorage.setItem('name',first.value);
+			
+			load();
+		};
+	};
+	
+	//데이터 읽기
+	function load(){
+		let display = document.getElementById('display');
+		let name = sessionStorage.getItem('name');
+		
+		//저장된 값이 없으면 undefined 반환 : 변수에 값이 없을때 조건문에서는 false, 값이 있는 변수가 조건이면 true로 인식
+		if(name){
+			display.innerHTML = '저장된 값 : ' + name;
+		}
+	}
+</script>
+</head>
+<body>
+<h2>세션스토리지</h2>
+<input type="text" name="first" id="first">
+<button id="save">저장</button>
+<div id="display">비어있음</div>
+</body>
+</html>

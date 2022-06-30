@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>예외처리</title>
+<script type="text/javascript">
+	try{
+		let result = 10/0;
+		
+		if(!isFinite(result)){
+			throw 'DivideByZeroException';
+		}
+		alert(result);
+	}catch(exception){
+		alert(exception);
+	}finally{
+		alert('오류가 있거나 없거나 반드시 수행');
+	}
+</script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>click/mouseover/mouseout</title>
+<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		//이벤트 연결        이벤트 핸들러
+		$('#btn1').click(function(){
+			$('p').css('background-color','yellow');
+		});
+		
+		$('#btn2').mouseover(function(){
+			$('div').css('background-color','purple');
+		});
+		
+		$('#btn2').mouseout(function(){
+			$('div').css('background-color','yellow');
+		});
+		
+		$('#btn3').hover(function(){
+			//mouseover 이벤트가 발생하면 호출
+			$('div').css('background-color','pink');
+		},function(){
+			//mouseout 이벤트가 발생하면 호출
+			$('div').css('background-color','skyblue');
+		});
+		
+	});
+</script>
+</head>
+<body>
+	<button id="btn1">click</button>
+	<p>내용</p>
+	
+	<hr width="100%" size="1" noshade="noshade">
+	 
+	<button id="btn2">mouseover/mouseout</button> 
+	<button id="btn3">hover</button>
+	<div>내용</div>
+	 
+</body>
+</html>
+
+
+

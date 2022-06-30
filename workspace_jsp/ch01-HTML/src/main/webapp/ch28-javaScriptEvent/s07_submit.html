@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>submit event</title>
+<script type="text/javascript">
+	function check(){
+		let name = document.getElementById('name');
+		if(name.value==''){
+			alert('이름입력하세요');
+			name.focus();
+			return;
+		}
+		let address = document.getElementById('address');
+		if(address.value==''){
+			alert('주소를 입력하세요');
+			address.focus();
+			return;
+		}
+		//이름과 주소를 입력하면 데이터를 서버로 전송
+		document.getElementById('myform').submit();
+	}
+</script>
+</head>
+<body>
+<form id="myform" action="a.jsp" method="post">
+이름:<input type="text" name="name" id="name"><br>
+주소:<input type="text" name="address" id="address"><br>
+<input type="button" value="전송" onclick="check()">
+</form>
+</body>
+</html>

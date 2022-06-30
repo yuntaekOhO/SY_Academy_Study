@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>table</title>
+<style type="text/css">
+ table {
+ 	border: 1px solid orange;
+ 	border-collapse: collapse; /* 표 테두리를 한 줄로 처리 */
+ 	width:500px;
+ 	/* 중앙 정렬 */
+ 	margin: 0 auto;
+ }
+ th { 
+ 	border: 1px solid orange; 
+ 	background-color: #FFCC66;
+ 	color: white;
+ 	padding: 5px;
+ }
+ td { 
+ 	border: 1px solid orange; 
+ 	/* 가로 방향 정렬 */
+ 	text-align: center;
+ 	height: 100px;
+ 	/* 세로 방향 정렬 */
+ 	vertical-align: top;
+ }
+ .bg td {
+ 	color: #000;
+ 	background-color: #EAF2D3;
+ 	vertical-align: bottom;
+ }
+ caption {
+ 	color: #ff6600;
+ 	font-size: 11pt;
+ 	font-weight: bold;
+ 	margin-bottom: 5px; 
+ }
+</style>
+</head>
+<body>
+<table>
+	<caption>table에 스타일 추가</caption>
+	<tr>
+		<th>도시</th>
+		<th>교통</th>
+		<th>음식</th>
+	</tr>
+	<tr>
+		<td>서울</td>
+		<td>지하철</td>
+		<td>비빔밥</td>
+	</tr>
+	<tr class="bg">
+		<td>부산</td>
+		<td>버스</td>
+		<td>대구탕</td>
+	</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>key event</title>
+<script type="text/javascript">
+/*
+ 이벤트 이름                 설명
+ keydown			키보드가 눌러질 때 발생
+ keypress       	글자가 입력될 때 발생 (한글 사용 불가능)
+ keyup				키보드가 떼어질 때 발생
+ */
+ 	window.onload=function(){
+		document.getElementById('content').onkeydown=function(){
+			console.log('down');
+		};
+		document.getElementById('content').onkeypress=function(){
+			console.log('press');
+		};
+		document.getElementById('content').onkeyup=function(){
+			console.log('up');
+			//입력한 글자 수
+			let inputLength = this.value.length;
+			//남은 글자 수를 구함
+			let remain = 150 - inputLength;
+			//문서 객체에 반영
+			let letter = document.getElementById('letter');
+			letter.innerHTML = remain;
+		};
+	};
+</script>
+</head>
+<body>
+<h4 id="letter">150</h4>
+<textarea rows="5" cols="30" name="content" id="content"></textarea>
+</body>
+</html>

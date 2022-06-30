@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>forEach() 메서드</title>
+<script type="text/javascript">
+	//배열 생성
+	let array = [10,20,30,40,50,60,70,80,90,100];
+	
+	let sum = 0;
+	array.forEach(function(element,index,array){
+		//element : 요소
+		//index : 배열의 인덱스
+		//array : 배열
+		sum += element;
+		document.write(index +' : '+ element + ' -> ' + sum +'<br>');
+	});
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

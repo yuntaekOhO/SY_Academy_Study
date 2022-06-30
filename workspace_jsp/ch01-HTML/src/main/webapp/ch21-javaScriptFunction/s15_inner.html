@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>내부함수</title>
+<script type="text/javascript">
+	function f(){
+		let n = 123;
+		//내부 함수
+		function g(){
+			document.write('n is '+n+'<br>');
+			document.write('g is called');
+		}
+		return g; //내부함수 반환
+	}
+	
+	//변수에 담아서 실행
+	let m = f();
+	document.write(m+'<br>');
+	document.write('--------------------<br>');
+	//m 변수에 대입된 내부함수 g를 실행
+	m();
+	document.write("<br>--------------------<br>");
+	
+	//f함수를 실행해서 반환되는 g함수를 실행
+	f()();
+</script>
+</head>
+<body>
+
+</body>
+</html>

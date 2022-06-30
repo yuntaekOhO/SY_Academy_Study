@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;ch01-HTML/src/main/webapp/ch14-float&apos; to &apos;ch14-cssFloat&apos;" description="Rename resource &apos;ch14-float&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/main/webapp/ch14-float" name="ch14-cssFloat" stamp="1654220757577" updateReferences="true"/>
+</session>

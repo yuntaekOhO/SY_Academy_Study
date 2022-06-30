@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>isFinite함수</title>
+<script type="text/javascript">
+	let number1 = 10 / 0;
+	document.write('number1 = '+number1+'<br>');
+	
+	//양수일 떄는 가능하지만 음수일 때는 사용할 수 없음
+	if(number1 == Infinity){//0으로 나누는 경우
+		document.write('무한');
+	}else {//0이 아닌 수로 나눈 경우
+		document.write('유한');
+	}
+	document.write('<br>----------<br>');
+	
+	//양수,음수를 0으로 나눴는지 아닌지 모든 검증 가능
+	if(isFinite(number1)){//0이 아닌 수로 나눈 경우
+		document.write('유한');
+	}else{//0으로 나눈 경우
+		document.write('무한');
+	}
+</script>
+</head>
+<body>
+
+</body>
+</html>

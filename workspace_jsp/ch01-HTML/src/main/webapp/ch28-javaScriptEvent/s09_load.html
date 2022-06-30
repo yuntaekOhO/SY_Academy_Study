@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>script태그에서 이벤트 연결</title>
+<script type="text/javascript">
+	//이벤트 연결
+	//이벤트 속성 = 이벤트 핸들러(함수)
+	window.onload = function() {
+		alert('문서 로드');
+		document.body.style.backgroundColor = 'yellow';
+		let notice = document.getElementById('notice');
+		notice.innerHTML = '날씨 맑음';
+		
+	};
+</script>
+</head>
+<body>
+	<div id="notice"></div>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>가위바위보</title>
+<style type="text/css">
+body{
+	font-family: '맑은 고딕',sans-serif;
+}
+h1{
+	text-align: center;
+}
+table{
+	width: 480px;
+	margin: 0 auto;
+}
+td.result-img{
+	position: relative;
+}
+td.result-img span.results{
+	font-size: 20px;
+	font-weight: bold;
+	border-radius: 20px;
+	width: 120px;
+	text-align: center;
+	background-color: #f4f2c6;
+	position: absolute;
+	top: 25%;
+	left: 20%;
+}
+.choice{
+	font-size: 1.2em;
+	font-weight: bold;
+	text-align: center;
+}
+.user_option{
+	cursor: pointer;
+}
+</style>
+<script type="text/javascript">
+	window.onload=function(){
+		//computer가 선택한 값을 표시할 이미지
+		let comImg = document.getElementById('com_img');
+		//user가 선택한 값을 표시할 이미지
+		let userImg = document.getElementById('user_img');
+		
+		//이벤트연결
+		let userOption = document.getElementsByClassName('user_option');
+		for(let i=0;i<userOption.length;i++){
+			//0-가위, 1-바위, 2-보
+			//Math.floor(Math.random()*3) 
+			userOption[i].onclick = function(){
+				let ran = Math.floor(Math.random()*3);
+				
+				//선택한 이미지 보이게 하기
+				userImg.src = this.src;
+				userImg.style.display = '';
+				
+				comImg.src = '../images/img'+ ran +'.png';
+				comImg.style.display = '';
+				
+				let user = this.id.charAt(3);
+				let results = document.getElementsByClassName('results');
+				let result;
+				//ran-user 연산으로 조건을 만들수 있다
+				if(ran==user){
+					result = ['무','무'];
+				}else if(ran==0&&user==1 || ran==1&&user==2 || ran==2&&user==0){
+					result = ['패','승'];
+				}else if(ran==0&&user==2 || ran==1&&user==0 || ran==2&&user==1){
+					result = ['승','패'];
+				}
+				let showResult = document.getElementsByClassName('results');
+				showResult[0].innerHTML = '컴퓨터 ' + result[0];
+				if(result[0]==['패']){
+					comImg.width = 100;
+					showResult[0].style.display = 'none';
+				}else{
+					comImg.width = 220;
+					showResult[0].style.display = '';
+				}
+				
+				showResult[1].innerHTML = '사용자 ' + result[1];
+				if(result[1]=='패'){
+					userImg.width = 100;
+					showResult[1].style.display = 'none';
+				}else{
+					userImg.width = 220;
+					showResult[1].style.display = '';
+				}
+			};
+		}
+		
+	};
+</script>
+</head>
+<body>
+<h1>가위바위보 게임</h1>
+<table>
+	<tr>
+		<td class="choice" colspan="2">
+			<img class="user_option" id="img0" src="../images/img0.png" width="90">
+			<img class="user_option" id="img1" src="../images/img1.png" width="90">
+			<img class="user_option" id="img2" src="../images/img2.png" width="90">
+		</td>
+	</tr>
+	<tr>
+		<td class="result-img" width="240">
+			<img id="com_img" style="display:none;">
+			<span class="results"></span>
+		</td>
+		<td class="result-img" width="240">
+			<img id="user_img" style="display:none;">
+			<span class="results"></span>
+		</td>
+	</tr>
+</table>
+</body>
+</html>

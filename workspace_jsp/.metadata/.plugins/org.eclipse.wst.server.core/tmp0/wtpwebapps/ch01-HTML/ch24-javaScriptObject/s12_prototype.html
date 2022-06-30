@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>프로토타입을 이용한 메서드 생성</title>
+<script type="text/javascript">
+	//생성자 함수 지정
+	function Student(name,korean,english,math){
+		//속성
+		this.이름 = name;
+		this.국어 = korean;
+		this.영어 = english;
+		this.수학 = math;
+	}
+	
+	//프로토타입은 '생성자 함수'를 사용해 생성된 객체가 공통으로 가지는 공간
+	//{ }로 객체를 생성하는 방법은 프로토타입을 사용할 수 없다.
+	//프로토타입을 이용하면 객체들이 메서드를 각자 가지고 있지 않고
+	//프로토타입이라는 공유 공간에서 가져다 쓰기 때문에 메모리 이득 
+	Student.prototype.getSum = function() {
+		return this.국어 + this.영어 + this.수학;
+	};
+	Student.prototype.getAvg = function() {
+		return this.getSum() / 3;
+	};
+	Student.prototype.toString = function() {
+		return this.이름 + ', ' + this.getSum() + ', ' + this.getAvg();
+	}
+	
+	//빈 배열 생성
+	let students = [];
+	students.push(new Student('홍길동',99,98,97));
+	students.push(new Student('박문수',91,92,93));
+	students.push(new Student('장영실',96,95,94));
+	
+	//출력
+	document.write('이름, 총점, 평균<br>');
+	for(let i in students){
+		document.write(students[i]+'<br>');
+	}
+</script>
+</head>
+<body>
+
+</body>
+</html>

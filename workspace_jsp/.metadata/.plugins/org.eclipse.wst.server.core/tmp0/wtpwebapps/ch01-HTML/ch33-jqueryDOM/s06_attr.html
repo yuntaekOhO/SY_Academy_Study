@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>attr</title>
+<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		//attr : 속성과 관련된 모든 기능을 수행
+		//하나의 속성 제어
+		//$('img').attr('width',100);
+	
+		//복수의 속성 제어
+		//$('img').attr('width',100) 
+		//		.attr('height',100);
+		//중괄호 안에 key:value 형태 - 객체 형태
+		//$('img').attr({width:100,height:100});
+		
+		//각각의 태그에 값을 다르게 설정
+		//$('img').attr('width',function(index){
+		//	return (index + 1) * 100;
+		//});
+		
+		//각각의 태그에 복수의 속성 값을 다르게 설정
+		$('img').attr({width:function(index){
+			return (index + 1) * 100;
+		}, height:function(index){
+			return (index + 1) * 100;
+		}})
+	});
+</script>
+</head>
+<body>
+	<img src="../images/Koala.jpg">
+	<img src="../images/Penguins.jpg">
+	<img src="../images/landscape.jpg">
+</body>
+</html>

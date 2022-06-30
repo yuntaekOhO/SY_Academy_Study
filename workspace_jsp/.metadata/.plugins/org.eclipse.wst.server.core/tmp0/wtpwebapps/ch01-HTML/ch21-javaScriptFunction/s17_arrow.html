@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>화살표 함수</title>
+<script type="text/javascript">
+/*
+ * 
+ ES6에서 도입된 화살표 함수(arrow function)은 function 키워드 대신 화살표(fat arrow =>)를 사용해
+ 좀 더 간략한 방법으로 함수를 선언. 화살표 함수는 항상 익명함수로 정의.
+ */
+ 	let play = function() {
+	 document.write('play<br>');
+	};
+	play();
+	
+	//화살표 함수
+	let print = (x) => {
+		document.write(x);
+	};
+	print(10);
+	document.write('<br>------------<br>');
+	
+	let print2 = (x) => {
+		return x + 10;
+	};
+	document.write(print2(20));
+	document.write('<br>---------------<br>');
+	
+	let print3 = (x,y) => {return x * y};
+	document.write(print3(3,6));
+	document.write('<br>---------<br>');
+	
+	//화살표 함수가 데이터를 반환할 경우는 {} 및 return 생략 가능
+	let add = (x,y) => x + y;
+	document.write(add(2,5));
+</script>
+</head>
+<body>
+
+</body>
+</html>

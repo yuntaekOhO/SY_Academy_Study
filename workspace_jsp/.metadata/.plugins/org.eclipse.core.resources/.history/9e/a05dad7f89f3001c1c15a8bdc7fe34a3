@@ -1,0 +1,20 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원가입 처리</title>
+</head>
+<body>
+<!-- 
+[출력예시]
+이름 : 홍길동
+ID : dragon
+비밀번호 : 1234
+전화번호 : 010-1234-4321
+취미 : 영화감상,등산
+자기소개 :
+ -->
+</body>
+</html>

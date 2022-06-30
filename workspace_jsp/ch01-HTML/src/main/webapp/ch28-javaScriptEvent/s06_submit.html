@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>submit event</title>
+<script type="text/javascript">
+	function check(){
+		let id = document.getElementById('id');
+		if(id.value==''){
+			alert('id를 입력하세요');
+			id.focus();
+			return false;
+		}
+		let pw = document.getElementById('pw');
+		if(pw.value==''){
+			alert('pw를 입력하세요');
+			pw.focus();
+			return false;
+		}
+			
+	}
+</script>
+</head>
+<body>
+<form id="member"action="a.jsp" method="post" onsubmit="return check()">
+	id<input type="text" name="id" id="id"><br>
+	pw<input type="password" name="pw" id="pw"><br>
+	<input type="submit" value="전송">
+</form>
+</body>
+</html>

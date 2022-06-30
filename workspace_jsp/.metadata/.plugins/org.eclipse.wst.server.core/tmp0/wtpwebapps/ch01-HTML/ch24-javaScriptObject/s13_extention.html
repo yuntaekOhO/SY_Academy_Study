@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>상속</title>
+<script type="text/javascript">
+//자바스크립트는 프로토타입을 이용하여 상속 구현
+	//부모 생성자 함수 정의
+	function Human(age){
+		this.age = age;
+	}
+	
+	//아래의 것들만 상속됨 = 프로토타입을 상속하는것임
+	Human.prototype.type = '사람';
+	Human.prototype.getType = function(){
+		return this.type;
+	};
+	Human.prototype.getAge = function() {
+		return this.age;
+	};
+	
+	let human1 = new Human(20);
+	document.write('human1.type = ' + human1.type + '<br>');
+	document.write('human1.age = ' + human1.age + '<br>');
+	document.write('human1.getType() = ' + human1.getType() + '<br>');
+	document.write('human1.getAge() = ' + human1.getAge() + '<br>');
+	document.write('----------------------<br>');
+	
+	//자식 생성자 함수 정의
+	function Student(age) {
+		this.age = age;
+	}
+	//상속 처리
+	Student.prototype = Human.prototype;
+	//프로토타입의 생성자를 재정의(정의하지 않아도 구동상의 문제는 없음)
+	Student.prototype.constructor = Student;
+	
+	let student = new Student(40);
+	document.write('student.type = ' + student.type + '<br>');
+	document.write('student.age = ' + student.age + '<br>');
+	document.write('student.getType() = ' + student.getType() + '<br>');
+	document.write('student.getAge() = ' + student.getAge() + '<br>');
+	document.write('----------------------<br>');
+	
+	document.write((student instanceof Student) + '<br>');
+	document.write((student instanceof Human) + '<br>');
+	document.write((student instanceof Object) + '<br>');
+	document.write((student instanceof Number) + '<br>');
+	document.write((human1 instanceof Student) + '<br>');
+</script>
+</head>
+<body>
+
+</body>
+</html>

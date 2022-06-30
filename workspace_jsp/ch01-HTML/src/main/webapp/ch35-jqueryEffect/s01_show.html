@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>show/hide/toggle</title>
+<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('#btn1').on('click',function(){
+			//속도값 fast(200), normal(400), slow(600)
+			$('#koala').show('fast',function(){
+				//완전히 태그가 보여지면 실행됨
+				alert('노출 완료');
+			});
+		});//end of btn1
+		
+		$('#btn2').on('click',function(){
+			//1초 동안 img 태그를 숨기고 콜백함수를 실행
+			$('#koala').hide(1000,function(){
+				//완전히 태그가 숨겨지면 실행됨
+				alert('숨김 완료');
+			});
+		});//end of btn2
+		
+		$('#btn3').on('click',function(){
+			//선택한 요소가 보이면 숨기고, 숨겨져 있으면 나타나도록 처리
+			$('#koala').toggle('slow');
+		});//end of btn3
+	});
+</script>
+</head>
+<body>
+	<button id="btn1">Show</button>
+	<button id="btn2">Hide</button>
+	<button id="btn3">Toggle</button>
+	<br>
+	<img id="koala" src="../images/Koala.jpg" width="120" height="100" style="display:none;">
+</body>
+</html>

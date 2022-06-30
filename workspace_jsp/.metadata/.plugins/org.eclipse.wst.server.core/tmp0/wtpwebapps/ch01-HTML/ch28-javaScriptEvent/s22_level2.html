@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>표준이벤트 모델</title>
+<script type="text/javascript">
+/*
+ DOM Level2의 표준이벤트 모델
+ addEventListener(eventType, eventHandler) : 이벤트 연결
+ removeEventListener(eventType, eventHandler)
+ */
+ 	//윈도우가 로드될 때
+ 	window.addEventListener('load', function(){
+ 		let header = document.getElementById('header');
+ 		
+ 		//이벤트 연결
+ 		header.addEventListener('click',function(){
+ 			alert('이벤트 발생');
+ 		});
+ 	});
+</script>
+</head>
+<body>
+	<h1 id="header">Click</h1>
+</body>
+</html>

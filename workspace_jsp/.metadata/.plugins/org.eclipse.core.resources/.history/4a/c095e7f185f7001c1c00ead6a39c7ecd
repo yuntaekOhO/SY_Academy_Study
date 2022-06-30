@@ -1,0 +1,13 @@
+window.onload=function(){
+	let myForm = document.getElementById('myForm');
+	//이벤트 연결
+	myForm.onsubmit=function(){
+		let name = document.getElementById();
+		if(name.value.trim()==''){
+			alert('이름을 입력하세요!');
+			name.value = ''; //공백이 있으면 공백 제거
+			name.focus();
+			return false;
+		}
+	};
+};

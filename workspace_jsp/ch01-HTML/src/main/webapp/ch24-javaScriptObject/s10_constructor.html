@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>생성자 함수 지정</title>
+<script type="text/javascript">
+	//생성자 함수 지정, 생성자 함수 식별자의 첫글자를 대문자로 표기
+	function Student(name,korean,english,math){
+		//속성
+		this.이름 = name;
+		this.국어 = korean;
+		this.영어 = english;
+		this.수학 = math;
+		
+		//메서드
+		this.getSum = function(){
+			return this.국어 + this.영어 + this.수학;
+		};
+		this.getAvg = function(){
+			return this.getSum() / 3;
+		};
+		this.toString = function(){
+			return this.이름 + ', ' + this.getSum() + ', ' + this.getAvg();
+		};
+	}
+	
+	//생성자 함수를 이용한 객체 생성
+	let student = new Student('홍길동',100,99,98);
+	//출력
+	document.write(student);
+</script>
+</head>
+<body>
+
+</body>
+</html>

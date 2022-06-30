@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Date</title>
+<script type="text/javascript">
+	window.onload = function(){
+		//일정 시간마다 매개변수로 전달된 함수를 반복해서 실행
+		window.setInterval(function(){
+			let time = new Date();
+			let hours = time.getHours();
+			let minutes = time.getMinutes();
+			let seconds = time.getSeconds();
+			
+			let clock = '';
+			clock += ((hours < 10) ? '0' : '') + hours;
+			clock += ((minutes < 10) ? ':0' : ':') + minutes;
+			clock += ((seconds < 10) ? ':0' : ':') + seconds;
+			
+			//id가 display인 span 태그를 읽어들여서 span의 내용에 시분초 표시
+			document.getElementById('display').innerHTML = clock;
+		},1000);
+	};
+</script>
+</head>
+<body>
+<span id="display"></span>
+</body>
+</html>

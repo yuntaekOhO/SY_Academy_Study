@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>fadeIn/fadeOut/fadeToggle/fadeTo</title>
+<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('#btn1').on('click',function(){
+			//지정한 속도(slow)동안 선명
+			$('#koala').fadeIn('slow');
+		});//end of btn1
+		
+		$('#btn2').on('click',function(){
+			//1초동안 투명해지면서 숨겨짐
+			$('#koala').fadeOut(1000);
+		});//end of btn2
+		
+		$('#btn3').on('click',function(){
+			$('#koala').fadeToggle('fast');
+		});//end of btn3
+		
+		$('#btn4').on('click',function(){
+			//선택한 요소를 지정한 투명도의 값까지만 숨김
+			//투명도는 0 ~ 1까지 입력
+			$('#koala').fadeTo('slow',0.3); //30%만 노출
+		});//end of btn4
+		
+		$('#btn5').on('click',function(){
+			//100%로 선명하게 노출
+			$('#koala').fadeTo('slow',1);
+		});//end of btn5
+	});
+</script>
+</head>
+<body>
+	<button id="btn1">fadeIn</button>
+	<button id="btn2">fadeOut</button>
+	<button id="btn3">fadeToggle</button>
+	<button id="btn4">fadeTo(투명도 30%)</button>
+	<button id="btn5">fadeTo(투명도 100%)</button>
+	<br>
+	<img id="koala" src="../images/Koala.jpg" width="120" height="100" style="display:none;">
+</body>
+</html>
