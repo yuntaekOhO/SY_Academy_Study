@@ -67,7 +67,42 @@
 					alert('네트워크 오류 발생');
 				}
 			});
-		}
+		} //end of selectData
+		
+		//submit 이벤트 연결
+		$('#insert_form').submit(function(event){
+			//입력 양식의 내용을 요청 매개변수 문자열로 만듬
+			//(파라미터네임과 value의 쌍, 인코딩 처리)
+			let input_data = $(this).serialize();
+			
+			$.ajax({
+				url:'insertPerson.jsp',
+				type:'post',
+				data:input_data,
+				dataType:'json',
+				cache:false,
+				timeout:30000,
+				success:function(param){
+					if(param.result=='success'){
+						alert('회원가입 완료!');
+						//form에 입력된 내용 초기화
+						$('#insert_form input[type="text"]').val('');
+						
+						//목록 호출
+						selectData();
+					}else{ //result==failure
+						alert('회원가입 오류 발생!');
+					}
+				},
+				error:function(){
+					//형식에 맞지않는 데이터 수신
+					alert('네트워크 오류 발생!');
+				}
+			});
+			
+			//기본 이벤트 제거 : submit으로 페이지 이동하는게 아닌 현재 페이지에서 데이터 전송,반영 하기 때문
+			event.preventDefault();
+		});
 		
 		//초기 화면에 목록 표시
 		selectData();
@@ -97,7 +132,7 @@
 			</li>
 			<li>
 				<label for="blood_type">혈액형</label>
-				<input type="text" name="blodd_type" id="blood_type">
+				<input type="text" name="blood_type" id="blood_type">
 			</li>
 		</ul>
 		<div align="center">

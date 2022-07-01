@@ -152,7 +152,17 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="C:\javaWork\workspace_jsp\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\javaWork\workspace_jsp\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ch01-HTML" path="/ch01-HTML" reloadable="true" source="org.eclipse.jst.jee.server:ch01-HTML"/><Context docBase="C:\javaWork\workspace_jsp\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ch02-Servlet" path="/ch02-Servlet" reloadable="true" source="org.eclipse.jst.jee.server:ch02-Servlet"/><Context docBase="C:\javaWork\workspace_jsp\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ch03-JSP" path="/ch03-JSP" reloadable="true" source="org.eclipse.jst.jee.server:ch03-JSP"/></Host>
+      <Context docBase="C:\javaWork\workspace_jsp\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\javaWork\workspace_jsp\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ch01-HTML" path="/ch01-HTML" reloadable="true" source="org.eclipse.jst.jee.server:ch01-HTML"/><Context docBase="C:\javaWork\workspace_jsp\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ch02-Servlet" path="/ch02-Servlet" reloadable="true" source="org.eclipse.jst.jee.server:ch02-Servlet"/><Context docBase="C:\javaWork\workspace_jsp\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ch03-JSP" path="/ch03-JSP" reloadable="true" source="org.eclipse.jst.jee.server:ch03-JSP"/><Context docBase="C:\javaWork\workspace_jsp\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ch04-Member" path="/ch04-Member" reloadable="true" source="org.eclipse.jst.jee.server:ch04-Member">
+	<!-- 
+	name : 식별자
+	auth : 컨테이너를 자원 관리자로 기술 
+	커넥션 풀 : 서버가 구동되면 미리 커넥션 풀에 커넥션을 만들어 놓고 필요할때마다 꺼내 쓰는 커넥션 저장공간
+			  이 커넥션을 사용하는게 DataSource, 커넥션은 DB에 접근할일이 있을때 사용됨
+	maxTotal : 커넥션 풀에서 생성되는 최대 커넥션 숫자 
+	maxIdle : 커넥션 풀 유지를 위해 최대 대기 커넥션 숫자
+	-->
+    <Resource auth="Container" driverClassName="oracle.jdbc.OracleDriver" maxIdle="10" maxTotal="20" name="jdbc/xe" password="1234" type="javax.sql.DataSource" url="jdbc:oracle:thin:@DESKTOP-6JDQIAI:1521:xe" username="c##user01"/>
+</Context></Host>
     </Engine>
   </Service>
 </Server>
