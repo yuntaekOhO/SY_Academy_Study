@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename package &apos;web.ch01&apos; to &apos;kr.web.ch01&apos;&#x0D;&#x0A;- Original project: &apos;ch02-Servlet&apos;&#x0D;&#x0A;- Original element: &apos;ch02-Servlet/src/main/java/web.ch01&apos;&#x0D;&#x0A;- Renamed element: &apos;ch02-Servlet/src/main/java/kr.web.ch01&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;web.ch01&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src\/main\/java&lt;web.ch01" name="kr.web.ch01" qualified="false" references="true" stamp="1655905614948" textual="false" version="1.0"/>
-</session>
