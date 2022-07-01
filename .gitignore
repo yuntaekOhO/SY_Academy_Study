@@ -1,8 +1,21 @@
 # 작성한 코드외 설치파일, 폴더
+
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+/recommenders
+
 apps/
 wokrspace-datastructure/
 workspace-namgung/
-/.metadata/
+
 
 wokrspace-spring/
 jquery-ui-1.13.1.custom/
