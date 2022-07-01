@@ -17,6 +17,7 @@ public class MemberDAO {
 	 * 싱글턴 패턴은 생성자를 private으로 지정해서 외부에서 호출할 수 없도록 처리하고
 	 * static 메서드를 호출해서 객체가 한 번만 생성되고 
 	 * 생성된 객체를 공유할 수 있도록 처리하는 방식을 의미함
+	 * 생성된 객체를 외부에서 사용하려면 MemberDAO.getInstance() static 메서드를 이용한다.
 	 */
 	private static MemberDAO instance = new MemberDAO();
 	
@@ -28,7 +29,7 @@ public class MemberDAO {
 	
 	//context.xml 에서 설정 정보를 읽어들여 커넥션 풀로부터 커넥션을 할당 받음
 	//할당받은 커넥션은 DataSource에 저장됨
-	//이 메서드는 설정파일을 읽고 오라클과의 연동을 담당
+	//DataSource는 설정파일을 읽고 오라클과의 연동을 담당
 	private Connection getConnection()throws Exception{
 		//JDBC 수행 1,2 단계와 같음
 		Context initCtx = new InitialContext();

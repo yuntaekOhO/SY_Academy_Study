@@ -4,7 +4,7 @@ import java.sql.Date;
 
 //자바빈 : VO(Value Object)
 public class MemberVO {
-	//멤버변수(프로퍼티)
+	//멤버변수(프로퍼티) : 테이블의 컬럼명과 동일하게 지정
 	private int num;
 	private String id;
 	private String name;
