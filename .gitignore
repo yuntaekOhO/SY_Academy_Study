@@ -2,7 +2,7 @@
 apps/
 wokrspace-datastructure/
 workspace-namgung/
-.metadata/
+/.metadata/
 
 wokrspace-spring/
 jquery-ui-1.13.1.custom/
