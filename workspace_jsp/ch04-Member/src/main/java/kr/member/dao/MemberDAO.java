@@ -81,30 +81,142 @@ public class MemberDAO {
 	
 	//회원상세정보
 	public MemberVO getMember(int num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		MemberVO member = null;
+		String sql = null;
 		
-		
+		try {
+			//JDBC 수행 1,2 단계 : 커넥션풀로부터 커넥션을 할당
+			conn = getConnection();
+			//SQL문 작성
+			sql = "SELECT * FROM smember WHERE num=?";
+			
+			//JDBC 수행 3 단계 : PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, num);
+			
+			//JDBC 수행 4 단계 : SQL문 테이블에 반영해서 결과행을 rs에 담음
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				//자바빈(VO) 객체 생성
+				member = new MemberVO();
+				member.setNum(rs.getInt("num"));
+				member.setId(rs.getString("id"));
+				member.setPasswd(rs.getString("passwd"));
+				member.setName(rs.getString("name"));
+				member.setEmail(rs.getString("email"));
+				member.setPhone(rs.getString("phone"));
+				member.setReg_date(rs.getDate("reg_date"));
+			}
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			executeClose(rs,pstmt,conn);
+		}
 		
 		return member;
 	}
 	
 	//아이디 중복체크, 로그인 체크
 	public MemberVO checkMember(String id)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		MemberVO member = null;
+		String sql = null;
 		
-		
+		try {
+			//JDBC 수행 1,2 단계 : 커넥션풀로부터 커넥션을 할당
+			conn = getConnection();
+			
+			//SQL문 작성
+			sql = "SELECT * FROM smember WHERE id=?";
+			
+			//JDBC 수행 3 단계 : PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setString(1, id);
+			
+			//JDBC 수행 4 단계 : SQL문을 테이블에 반영하고 결과행을 rs에 담음
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				//자바빈(VO) 객체 생성
+				member = new MemberVO();
+				member.setId(rs.getString("id"));
+				member.setNum(rs.getInt("num"));
+				member.setPasswd(rs.getString("passwd"));
+			}
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			executeClose(rs,pstmt,conn);
+		}
 		
 		return member;
 	}
 	
 	//회원정보 수정
 	public void updateMember(MemberVO member)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
 		
+		try {
+			//JDBC 수행 1,2 단계 : 커넥션풀에서 커넥션 할당
+			conn = getConnection();
+			//SQL문 작성
+			sql = "UPDATE smember SET name=?,passwd=?,email=?,phone=? WHERE num=?";
+			
+			//JDBC 수행 3단계 : PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터바인딩
+			pstmt.setString(1, member.getName());
+			pstmt.setString(2, member.getPasswd());
+			pstmt.setString(3, member.getEmail());
+			pstmt.setString(4, member.getPhone());
+			pstmt.setInt(5, member.getNum());
+			
+			//JDBC 수행 4단계 : SQL문 실행
+			pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			executeClose(null,pstmt,conn);
+		}
 	}
 	
 	//회원탈퇴(회원정보 삭제)
 	public void deleteMember(int num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
 		
+		try {
+			//JDBC 수행 1,2 단계 : 커넥션풀로부터 커넥션 할당
+			conn = getConnection();
+			//SQL문 작성
+			sql = "DELETE FROM smember WHERE num=?";
+			
+			//JDBC 수행 3단계 : PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터바인딩
+			pstmt.setInt(1, num);
+			
+			//JDBC 수행 4단계 : SQL문 실행
+			pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			executeClose(null, pstmt, conn);
+		}
 	}
 	
 }

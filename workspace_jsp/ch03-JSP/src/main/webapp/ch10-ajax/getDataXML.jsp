@@ -5,7 +5,7 @@
 <%@ page import="java.sql.PreparedStatement"%>
 <%@ page import="java.sql.SQLException"%>
 <%@ page import="java.sql.ResultSet"%>
-<%@ include file="dbInfo2.jspf"%>
+<%@ include file="dbInfo.jspf"%>
 <?xml version="1.0" encoding="UTF-8"?>
 <people>
 <%

@@ -6,6 +6,8 @@
 <meta charset="UTF-8">
 <title>회원가입</title>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/style.css" type="text/css">
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/member.js"></script>
 </head>
 <body>
 <div class="page-main">
