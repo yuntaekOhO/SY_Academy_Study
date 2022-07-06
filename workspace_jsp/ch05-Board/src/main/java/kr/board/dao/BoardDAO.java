@@ -71,14 +71,28 @@ public class BoardDAO {
 	
 	//글의 총개수
 	public int getCount()throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
 		int count = 0;
-		String sql = "SELECT count(*) FROM mboard";
+		
 		try {
-			
+			//JDBC 수행 1,2단계 : 커넥션풀로부터 커넥션을 할당
+			conn = getConnection();
+			//SQL문 작성
+			sql = "SELECT COUNT(*) FROM mboard";
+			//JDBC 수행 3단계 : PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//JDBC 수행 4단계 : SQL문 실행해 테이블에 반영하고 결과행을 rs에 담음
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1); //컬럼 인덱스
+			}
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
-			
+			executeClose(rs, pstmt, conn);
 		}
 		
 		return count;
@@ -96,9 +110,14 @@ public class BoardDAO {
 			//JDBC 수행 1,2단계 : 커넥션풀로부터 커넥션 할당
 			conn = getConnection();
 			//sql문 작성
-			sql = "SELECT * FROM mboard ORDER BY num DESC";
+			sql = "SELECT * FROM (SELECT a.*, rownum rnum "
+							   + "FROM (SELECT * FROM mboard ORDER BY num DESC) a) "
+					+ "WHERE rnum>=? AND rnum<=?";
 			//JDBC 수행 3단계 : PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
+			//?에 데이터바인딩
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
 			//JDBC 수행 4단계 : SQL문을 테이블에 반영하고 결과행들을 rs에 담음
 			rs = pstmt.executeQuery();
 			
