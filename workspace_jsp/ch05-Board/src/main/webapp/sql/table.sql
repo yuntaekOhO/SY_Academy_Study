@@ -21,6 +21,10 @@ create sequence mboard_seq;
 
 --alias는 where절에서 사용 불가 -> rnum을 일반컬럼으로 인식하게 만드는 방법 : 서브쿼리속 alias는 본 쿼리에서 컬럼으로 인식
 
+--rownum은 의사열이라 where 절에 1 <= rownum <= 10은 정상 작동하지만
+--11 <= rownum <= 20은 결과행이 안나오는 특성이있다
+--그러므로 rownum의 데이터를 확정시키기 위해 서브쿼리로 만든다.
+ 
 --등록된 게시글을 내림차순으로 정렬하고, 그 정렬을 기준으로 모든행에 rownum을 부여하고
 --지정된 rownum 범위의 결과행의 모든 컬럼을 보여준다 
 SELECT *
