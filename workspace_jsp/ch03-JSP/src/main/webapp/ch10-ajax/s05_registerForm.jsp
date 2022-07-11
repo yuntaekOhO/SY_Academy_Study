@@ -43,7 +43,7 @@
 				data:{id:$('#id').val()}, //서버로 보낼 데이터
 				dataType:'json', 		  //서버로부터 전송되어지는 데이터의 타입
 				cache:false,			  //캐시 미사용, 낮은 버전의 브라우저는 원격지에서 캐시가 공개되는 경우가 있음
-				timeout:30000,			  //3000ms이 지나도록 표시 되지않을시 에러
+				timeout:30000,			  //30초 지나도록 표시 되지않을시 에러
 				success:function(param){
 					if(param.result == 'idDuplicated'){
 						//아이디 중복

@@ -98,9 +98,12 @@
 					//형식에 맞지않는 데이터 수신
 					alert('네트워크 오류 발생!');
 				}
-			});
+			});//end of ajax in insert submit
 			
 			//기본 이벤트 제거 : submit으로 페이지 이동하는게 아닌 현재 페이지에서 데이터 전송,반영 하기 때문
+			//preventDefault()의 동작은 return false; 처럼 기본이벤트를 삭제하는 기능인데
+			//return false의 경우 해당 명령을 실행하는 즉시 이벤트 핸들러에서 탈출해서 다음라인이 동작하지 않지만
+			//preventDefault는 기본이벤트를 제거하고 다음 행이 있다면 다음 행을 실행한다.
 			event.preventDefault();
 		});
 		

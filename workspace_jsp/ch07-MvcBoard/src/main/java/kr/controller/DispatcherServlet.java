@@ -94,7 +94,7 @@ public class DispatcherServlet extends HttpServlet{
 			view = view.substring("redirect:".length());
 			response.sendRedirect(request.getContextPath()+view);
 		}else{
-			//forward 방식으로 view(jsp) 호출
+			//default : forward 방식으로 view(jsp) 호출
 			RequestDispatcher dispatcher =
 					request.getRequestDispatcher(view);
 			dispatcher.forward(request, response);
