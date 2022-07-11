@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%--/lib/cos.jar --%>
 <%@ page import="com.oreilly.servlet.MultipartRequest" %>
 <%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy" %>
 <%@ page import="java.io.File" %>
@@ -34,7 +35,8 @@
 		//전송전 원래의 파일 이름
 		String original = multi.getOriginalFileName("uploadFile");
 		
-		//서버에 저장된 파일 이름
+		//서버에 저장된 파일 이름 : DefaultFileRenamePolicy()로 인해 이미 서버에 
+		//원래 파일이름이 있다면 뒤에 1,2,3..을 붙혀서 새로 저장함
 		String filename = multi.getFilesystemName("uploadFile");
 		
 		//전송된 파일의 컨텐트 타입

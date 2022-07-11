@@ -24,10 +24,10 @@
 <script type="text/javascript">
 	$(function(){
 		//아이디 중복 체크 결과 -> 0 : 아이디 중복체크 미실시, 아이디 중복
-		//				   -> 1 : 아이디 미중복
+		//				    -> 1 : 아이디 미중복
 		let count = 0;
 		
-		//이벤트 연결
+		//중복체크 버튼 이벤트 연결
 		$('#confirmId').click(function(){
 			if($('#id').val().trim()==''){ //공백만 입력 경우
 				alert('아이디를 입력하세요!');

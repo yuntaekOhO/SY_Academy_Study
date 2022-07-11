@@ -71,7 +71,7 @@
 		
 		//submit 이벤트 연결
 		$('#insert_form').submit(function(event){
-			//입력 양식의 내용을 요청 매개변수 문자열로 만듬
+			//입력 양식의 내용을 요청 매개변수 문자열로 만듬 = 폼에 입력한 데이터 파라미터로 올림
 			//(파라미터네임과 value의 쌍, 인코딩 처리)
 			let input_data = $(this).serialize();
 			
