@@ -1,0 +1,34 @@
+[ch08-MvcPage]
+
+*MVC 패턴 작업 순서
+1.프로젝트를 MVC 패턴에 맞게 구성
+2.테이블 작성
+3.자바빈VO 작성
+4.DAO 작성				ㅡㅡㅡ
+5.모델 클래스 작성				   ㅣ	4~7 반복
+6.JSP(View) 작성				   ㅣ
+7.ActionMap 설정,관리 (property)		ㅡㅡㅡ
+
+
+
+
+	         controller						model(DB,DAO 사용)	    view
+client request -> servlet -> property검색 -> request url(key)로 model 연결 -> model은 jsp실제 경로 반환 -> jsp response
+
+1)
+index.jsp에서 redirect "/main/main.do"로 접근
+2)
+"/main/main.do" = kr.main.action.MainAction (모델)
+   return "/WEB-INF/views/main/main.jsp"
+   = 실제 호출되는 페이지 (메인페이지)
+3) (header.jsp - 회원가입 링크 누름)
+  "/member/registerUserForm.do" = 
+           kr.member.action.RegisterUserFormAction (모델)
+  return "/WEB-INF/views/member/registerUserForm.jsp"
+  = 실제 호출되는 페이지 회원가입 정보 기입 
+       submit시 request에 담기고 registerUser.do 호출
+
+4) registerUser.do = kr.member.action.RegisterUserAction
+   request에 담긴 입력정보를 자바빈에 담고 
+   dao의 insertMember(member) 실행(db에저장)하고
+   return "/WEB-INF/views/member/registerUser.jsp"
