@@ -41,6 +41,9 @@ public class UpdateMyPhotoAction implements Action {
 			//프로필 사진 수정
 			dao.updateMyPhoto(photo, user_num);
 			
+			//세션에 저장된 프로필 사진 정보 갱신
+			session.setAttribute("user_photo", photo);
+			
 			//이전 프로필 이미지 삭제
 			FileUtil.removeFile(request,db_member.getPhoto());
 			
