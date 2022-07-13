@@ -22,10 +22,6 @@ public class ModifyUserAction implements Action {
 		//전송된 데이터 인코딩 처리
 		request.setCharacterEncoding("utf-8");
 		
-		//로그인된 member 정보 가져오기
-		//MemberDAO dao = MemberDAO.getInstance();
-		//MemberVO member = dao.getMember(user_num);
-		
 		//자바빈(VO) 생성
 		MemberVO member = new MemberVO();
 		member.setMem_num(user_num);

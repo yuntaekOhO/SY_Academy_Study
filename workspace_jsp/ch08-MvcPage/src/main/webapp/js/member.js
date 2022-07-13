@@ -1,8 +1,8 @@
 $(function(){
-	let idChecked = 0;
+	let idChecked = 0; //0:사용불가한 아이디, 1:사용가능한 아이디
 	
 	//================= 회원가입 =================//
-	//id 중복체크 이벤트 연결
+	//id 중복체크 버튼 이벤트 연결
 	$('#id_check').click(function(){
 		if($('#id').val().trim()==''){
 			alert('아이디를 입력하세요');
@@ -10,7 +10,7 @@ $(function(){
 			return;
 		}
 		
-		//메세지 초기화
+		//메세지 초기화 - 중복 메시지 span
 		$('#message_id').text('');
 		
 		//서버와 데이터 통신
@@ -38,7 +38,7 @@ $(function(){
 				idChecked = 0;
 				alert('네트워크 오류!!');
 			}
-		});
+		});//end of ajax
 		
 	});//end of click
 	
@@ -124,8 +124,9 @@ $(function(){
 	let my_photo;
 	$('#photo').change(function(){
 		my_photo = this.files[0];
-		//이미지 선택 취소한 경우
+		//이미지 선택 취소한 경우 (기본 또는 이전)이미지로 다시 설정
 		if(!my_photo){
+			//초기화 작업
 			$('.my-photo').attr('src',photo_path);
 			return;
 		}
@@ -141,8 +142,10 @@ $(function(){
 		
 		//input file에서 선택한 이미지 미리보기 처리
 		var reader = new FileReader();
+		//my_photo(선택한 이미지 파일)을 base64 인코딩처리해서 읽어들임 : FileReader가 파일을 읽는 것
+		//base64는 8비트 이진데이터를 아스키코드로 읽을 수 있음 ; 이미지,동영상 등 바이너리 파일 => 아스키코드로 변환
 		reader.readAsDataURL(my_photo);
-		reader.onload=function(){
+		reader.onload=function(){     //FileReader가 읽은 결과를 이미지 속성 src의 값으로 설정 
 			$('.my-photo').attr('src',reader.result);
 		};
 		
@@ -157,14 +160,19 @@ $(function(){
 		}
 		
 		//ajax로 파일 전송
+		//FormData란 ajax로 폼 전송을하게 해주는 객체이다 : 요약)페이지 전환없이 폼 데이터 보낼때 사용 = 비동기
+		//JSON 구조로 key-value 구조로 데이터 전송
+		//주의사항 : 같은 key가 있어도 추가됨(덮어씌우지않음), 값은 문자열로 자동 변환
 		let form_data = new FormData();
-					   //파라미터명, 값
-		form_data.append('photo',my_photo);
+		//append : FormData에 키,값 추가하는 메서드 
+				   //파라미터명(키), 값(file로 선택한 이미지파일)
+		form_data.append('photo', my_photo);
 		$.ajax({
 			url:'updateMyPhoto.do',
 			type:'post',
 			data:form_data,
 			dataType:'json',
+			//default는 값을 문자열로 변환하기 때문에 속성을 지정해 줌
 			contentType:false,//데이터 객체를 문자열로 바꿀지에 대한 값. true면 일반문자, false면 파일
 			processData:false,//해당 속성이 true면 일반 text로 구분
 			enctype:'multipart/form-data',//파일업로드할 경우 명시
@@ -172,7 +180,7 @@ $(function(){
 				if(param.result == 'logout'){
 					alert('로그인 후 사용하세요');
 					//로그인 폼으로 리다이렉트
-					//window.location.replace('redirect:loginForm.do');
+					//location.replace('loginForm.do');
 				}else if(param.result == 'success'){
 					alert('프로필 사진이 수정되었습니다');
 					photo_path = $('.my-photo').attr('src');

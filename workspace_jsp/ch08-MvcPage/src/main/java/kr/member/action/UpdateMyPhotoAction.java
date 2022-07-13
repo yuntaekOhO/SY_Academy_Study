@@ -35,7 +35,7 @@ public class UpdateMyPhotoAction implements Action {
 			//전송된 파일 업로드 처리
 			MultipartRequest multi = FileUtil.createFile(request);
 			
-			//서버에 저장된 파일명 반환
+			//서버에 저장된 파일명 반환 매개변수 "photo"는 ajax FormData로 지정했음
 			String photo = multi.getFilesystemName("photo");
 			
 			//프로필 사진 수정

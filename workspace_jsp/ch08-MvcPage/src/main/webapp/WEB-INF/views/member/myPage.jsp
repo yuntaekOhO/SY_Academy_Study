@@ -19,9 +19,11 @@
 			<h3>프로필 사진</h3>
 			<ul>
 				<li>
+					<%--DB상 photo에 저장된 데이터 없는 경우 --%>
 					<c:if test="${empty member.photo}">
 					<img alt="기본이미지" src="${pageContext.request.contextPath}/images/face.png" width="200" height="200" class="my-photo">
 					</c:if>
+					<%--DB상 photo에 저장된 데이터 있는 경우 --%>
 					<c:if test="${!empty member.photo}">
 					<img alt="사용자저장이미지" src="${pageContext.request.contextPath}/upload/${member.photo}" width="200" height="200" class="my-photo">
 					</c:if>

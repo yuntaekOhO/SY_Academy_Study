@@ -16,6 +16,7 @@ public class RegisterUserAction implements Action {
 		
 		//자바빈(VO) 생성
 		MemberVO member = new MemberVO();
+		//폼에 입력되서 request Parameter로 넘어온 데이터
 		//전송된 데이터를 자바빈에 저장
 		member.setId(request.getParameter("id"));
 		member.setName(request.getParameter("name"));

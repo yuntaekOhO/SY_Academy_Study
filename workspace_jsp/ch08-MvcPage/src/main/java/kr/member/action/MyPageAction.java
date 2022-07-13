@@ -21,8 +21,9 @@ public class MyPageAction implements Action {
 		
 		//로그인 된 경우
 		MemberDAO dao = MemberDAO.getInstance();
+		//로그인이 된 경우 세션에 user_num이 저장되어있다
+		//user_num을 식별자로 사용해 멤버의 데이터를 불러와 request Attribute에 저장
 		MemberVO member = dao.getMember(user_num);
-		
 		request.setAttribute("member", member);
 		
 		return "/WEB-INF/views/member/myPage.jsp";

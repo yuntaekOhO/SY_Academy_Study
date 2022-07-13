@@ -20,6 +20,7 @@ public class LoginAction implements Action {
 		String passwd = request.getParameter("passwd");
 
 		MemberDAO dao = MemberDAO.getInstance();
+		//해당 id가 테이블에 있는지 체크
 		MemberVO member = dao.checkMember(id);
 		boolean check = false;
 
