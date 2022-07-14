@@ -13,6 +13,13 @@
 			<a href="${pageContext.request.contextPath}/board/list.do">게시판</a>
 		</li>
 		
+		<%-- 관리자 모드 --%>
+		<c:if test="${!empty user_num && user_auth==3}">
+		<li>
+			<a href="${pageContext.request.contextPath}/member/memberList.do">회원관리</a>
+		</li>
+		</c:if>
+		
 		<%--empty : 비어있거나 null / !empty : 비어있지않고 null도 아님--%>
 		<c:if test="${!empty user_num && user_auth == 2}">
 		<li>

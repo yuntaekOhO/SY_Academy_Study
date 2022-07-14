@@ -20,7 +20,7 @@ public class MemberVO {
 	//비밀번호 일치 여부 체크
 	public boolean isCheckedPassword(String userPasswd) {
 		//회원등급(auth) : 0탈퇴 1정지 2일반 3관리자
-		if(auth >1 && passwd.equals(userPasswd)) {
+		if(auth >1 && passwd.equals(userPasswd)) {//member에 저장된 passwd와 인자로들어온 passwd 비교
 			return true;
 		}
 		return false;

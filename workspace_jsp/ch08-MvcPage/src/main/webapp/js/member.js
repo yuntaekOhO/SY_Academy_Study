@@ -273,6 +273,13 @@ $(function(){
 		}
 	});//end of submit
 	
+	//새비밀번호 확인까지 한 후 다시 새비밀번호를 수정하면 새비밀번호 확인 및
+	//메시지 초기화
+	$('#passwd').keyup(function(){
+		$('#cpasswd').val('');
+		$('#message_cpasswd').text('');
+	});
+	
 	//새 비밀번호와 새 비밀번호 확인 일치시 메시지 처리
 	$('#cpasswd').keyup(function(){
 		if($('#passwd').val() == $('#cpasswd').val()){
@@ -281,6 +288,53 @@ $(function(){
 			$('#message_cpasswd').text('');
 		}
 	});//end of keyup
+	
+	
+	//================= 회원탈퇴 =================//
+	$('#delete_form').submit(function(){
+		if($('#id').val().trim()==''){
+			alert('아이디를 입력하세요');
+			$('#id').val('').focus();
+			return false;
+		}
+		if($('#email').val().trim()==''){
+			alert('이메일을 입력하세요');
+			$('#email').val('').focus();
+			return false;
+		}
+		if($('#passwd').val().trim()==''){
+			alert('비밀번호를 입력하세요');
+			$('#passwd').val('').focus();
+			return false;
+		}
+		if($('#cpasswd').val().trim()==''){
+			alert('비밀번호 확인을 입력하세요');
+			$('#cpasswd').val('').focus();
+			return false;
+		}
+		if($('#passwd').val()!=$('#cpasswd').val()){
+			alert('비밀번호와 비밀번호 확인 불일치');
+			$('#passwd').val('').focus();
+			$('#cpasswd').val('');
+			return false;
+		}
+	});//end of submit
+	
+	//비밀번호 확인까지 한 후 다시 비밀번호를 수정하면 비밀번호 확인 및
+	//메시지 초기화
+	$('#passwd').keyup(function(){
+		$('#cpasswd').val('');
+		$('#message_id').text('');
+	});
+	
+	//비밀번호와 비밀번호 확인 일치 여부 체크
+	$('cpasswd').keyup(function(){
+		if($('#passwd').val()==$('#cpasswd').val()){
+			$('#message_id').text('비밀번호 일치');
+		}else{
+			$('#message_id').text('');
+		}
+	});
 	
 });
 
