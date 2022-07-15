@@ -71,6 +71,23 @@ a:hover{
 	color: #6C6C6C;
 }
 /*목록*/
+form#search_form{
+	border:none;
+}
+ul.search{
+	width:300px;
+	list-style:none;
+	padding:0;
+	margin:0 auto;
+}
+ul.search li{
+	margin:0 0 9px 0;
+	padding:0;
+	display:inline;
+}
+.list-space{
+	margin-bottom:10px;
+}
 table{
 	width:100%;
 	border:1px solid #000;
