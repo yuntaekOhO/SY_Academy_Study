@@ -33,6 +33,7 @@ public class AdminMemberListAction implements Action {
 		String keyword = request.getParameter("keyword");
 		
 		MemberDAO dao = MemberDAO.getInstance();
+		//전체(검색) 회원수 저장
 		int count = dao.getMemberCountByAdmin(keyfield, keyword);
 		
 		//페이지 처리

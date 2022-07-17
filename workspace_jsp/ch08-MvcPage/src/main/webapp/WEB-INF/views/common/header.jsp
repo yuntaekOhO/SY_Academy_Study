@@ -21,12 +21,14 @@
 		</c:if>
 		
 		<%--empty : 비어있거나 null / !empty : 비어있지않고 null도 아님--%>
+		<%-- 일반유저 로그인 성공시 MY페이지 메뉴 --%>
 		<c:if test="${!empty user_num && user_auth == 2}">
 		<li>
 			<a href="${pageContext.request.contextPath}/member/myPage.do">MY페이지</a>
 		</li>
 		</c:if>
 		
+		<%-- 일반유저 로그인 성공/ 프로필사진 유,무로 나뉨 시작 --%>
 		<c:if test="${!empty user_num && !empty user_photo}">
 		<li class="menu-profile">
 			<img alt="유저프로필" src="${pageContext.request.contextPath}/upload/${user_photo}" width="25" height="25" class="my-photo">
@@ -38,6 +40,7 @@
 			<img alt="프로필미등록" src="${pageContext.request.contextPath}/images/face.png" width="25" height="25" class="my-photo">
 		</li>
 		</c:if>
+		<%-- 일반유저 로그인 성공/ 프로필사진 유,무로 나뉨 끝 --%>
 		
 		<c:if test="${!empty user_num}">
 		<li class="menu-logout">

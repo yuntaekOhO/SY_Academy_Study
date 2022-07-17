@@ -11,7 +11,7 @@ public class LogoutAction implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
-		//로그아웃 처리
+		//로그아웃 처리 : 세션에 저장된 값 삭제, 세션 없애기
 		session.invalidate();
 		
 		return "redirect:/main/main.do";

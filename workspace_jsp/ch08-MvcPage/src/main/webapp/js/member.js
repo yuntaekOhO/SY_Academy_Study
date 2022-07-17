@@ -159,8 +159,9 @@ $(function(){
 			return;
 		}
 		
+		//선택한 이미지 db에 저장 처리
 		//ajax로 파일 전송
-		//FormData란 ajax로 폼 전송을하게 해주는 객체이다 : 요약)페이지 전환없이 폼 데이터 보낼때 사용 = 비동기
+		//FormData란 ajax로 폼 전송을하게 해주는 객체이다 : (요약)페이지 전환없이 폼 데이터 보낼때 사용 = 비동기
 		//JSON 구조로 key-value 구조로 데이터 전송
 		//주의사항 : 같은 key가 있어도 추가됨(덮어씌우지않음), 값은 문자열로 자동 변환
 		let form_data = new FormData();
