@@ -392,6 +392,29 @@ public class MemberDAO {
 		return list;
 		
 	}
-	//회원정보 수정
-	
+	//회원정보(등급) 수정
+	public void updateMemberByAdmin(int auth, int mem_num)throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			//JDBC 1,2 : 커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "UPDATE zmember SET auth=? WHERE mem_num=?";
+			//JDBC 3 : PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터바인딩
+			pstmt.setInt(1, auth);
+			pstmt.setInt(2, mem_num);
+			//JDBC 4 : SQL 실행
+			pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 }

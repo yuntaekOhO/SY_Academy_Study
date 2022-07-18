@@ -14,6 +14,7 @@
 	<div class="content-main">
 		<h2>${member.id}의 회원정보 (관리자 전용)</h2>
 		<form action="detailUser.do" method="post" id="detail_form">
+			<%-- 현재 로그인은 관리자가 한것이기 때문에 세션에서 mem_num을 구하지 않고 아래의 방식으로 구함 --%>
 			<input type="hidden" name="mem_num" value="${member.mem_num}">
 			<ul>
 				<li>
