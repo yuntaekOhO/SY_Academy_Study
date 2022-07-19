@@ -70,6 +70,30 @@ a:hover{
 	text-decoration: none;
 	color: #6C6C6C;
 }
+/*메인*/
+.board-space .horizontal-area{
+	margin:2px;
+	padding:3px;
+	width:220px;
+	height:260px;
+	float:left;
+	overflow:hidden;
+}
+.board-space .horizontal-area img.board-image{
+	width:215px;
+	height:195px;
+}
+.board-space .horizontal-area div.board-detail{
+	display:flex;
+	align-items:center;
+}
+.board-space .horizontal-area span{
+	padding:5px;
+	margin:5px;
+}
+.board-space .float-clear{
+	clear:both;
+}
 /*목록*/
 form#search_form{
 	border:none;
@@ -97,6 +121,16 @@ table{
 table td, table th{
 	border:1px solid #000;
 	padding:5px;
+}
+/*글상세*/
+ul.detail-info{
+	list-style:none;
+}
+ul.detail-info li{
+	display:inline-block;
+}
+.detail-img{
+	max-width:500px;
 }
 /*등록, 수정폼*/
 form{
