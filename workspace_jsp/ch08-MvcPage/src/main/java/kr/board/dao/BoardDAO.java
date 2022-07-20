@@ -211,7 +211,63 @@ public class BoardDAO {
 		}
 	}
 	//파일 삭제
+	public void deleteFile(int board_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			//JDBC 1,2단계 커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//sql작성
+			sql = "UPDATE zboard SET filename='' WHERE board_num=?";
+			//JDBC 3단계 PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터바인딩
+			pstmt.setInt(1, board_num);
+			//JDBC 4단계 sql실행
+			pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	//글수정
+	public void updateBoard(BoardVO board)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		String sub_sql = "";
+		int cnt = 0;
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			if(board.getFilename()!=null) {
+				//업로드한 파일이 있는 경우
+				sub_sql = ",filename=?";
+			}
+			sql = "UPDATE zboard SET title=?,content=?,modify_date=SYSDATE"+sub_sql+",ip=? WHERE board_num=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(++cnt, board.getTitle());
+			pstmt.setString(++cnt, board.getContent());
+			if(board.getFilename()!=null) {
+				pstmt.setString(++cnt, board.getFilename());
+			}
+			pstmt.setString(++cnt, board.getIp());
+			pstmt.setInt(++cnt, board.getBoard_num());
+			
+			pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	//글삭제
 
 	//좋아요 등록
