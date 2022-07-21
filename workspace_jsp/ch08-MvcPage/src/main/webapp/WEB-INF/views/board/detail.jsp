@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/board.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/board.fav.js"></script>
 </head>
 <body>
 <div class="page-main">
@@ -68,6 +69,14 @@
 				</c:if>
 			</li>
 		</ul>
+		<!-- 댓글 시작 -->
+		<div id="reply_div">
+			<span class="re-title">댓글 달기</span>
+			<form id="re_form">
+				<input type="hidden" name="board_num" value="${board.board_num}" id="board_num">
+			</form>
+		</div>
+		<!-- 댓글 끝 -->
 	</div>
 </div>
 </body>
