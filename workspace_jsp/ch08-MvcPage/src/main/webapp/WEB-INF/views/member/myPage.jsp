@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,6 +69,21 @@
 					<input type="button" value="연락처 수정" onclick="location.href='modifyUserForm.do'">
 				</li>
 			</ul>
+			<h3>관심(좋아요) 게시물 목록</h3>
+			<table>
+				<tr>
+					<th>제목</th>
+					<th>작성자</th>
+					<th>등록일</th>
+				</tr>
+				<c:forEach var="board" items="${boardList}">
+				<tr><%-- target="_blank" : 새 탭으로 열기 --%>
+					<td><a href="${pageContext.request.contextPath}/board/detail.do?board_num=${board.board_num}" target="_blank">${fn:substring(board.title,0,12)}</a></td>
+					<td>${board.id}</td>
+					<td>${board.reg_date}</td>
+				</tr>
+				</c:forEach>
+			</table>
 		</div>
 		<div class="mypage-end"></div>
 	</div>

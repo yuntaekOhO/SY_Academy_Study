@@ -54,3 +54,16 @@ create table zboard_fav(
 );
 create sequence zboardfav_seq;
 --게시판 댓글
+create table zboard_reply(
+ re_num number not null,
+ re_content varchar2(900) not null,
+ re_date date default sysdate not null,
+ re_modifydate date,
+ re_ip varchar2(40) not null,
+ board_num number not null,
+ mem_num number not null,
+ constraint zreply_pk primary key (re_num),
+ constraint zreply_fk foreign key (board_num) references zboard(board_num),
+ constraint zreply_fk foreign key (mem_num) references zmember(mem_num)
+);
+create sequence zreply_seq;
