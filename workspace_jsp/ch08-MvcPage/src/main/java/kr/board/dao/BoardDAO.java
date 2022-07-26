@@ -10,6 +10,7 @@ import kr.board.vo.BoardFavVO;
 import kr.board.vo.BoardReplyVO;
 import kr.board.vo.BoardVO;
 import kr.util.DBUtil;
+import kr.util.DurationFromNow;
 import kr.util.StringUtil;
 
 public class BoardDAO {
@@ -518,7 +519,93 @@ public class BoardDAO {
 		return count;
 	}
 	//댓글 목록
+	public List<BoardReplyVO> getListReplyBoard(int start, int end, int board_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<BoardReplyVO> list = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT * FROM zboard_reply b "
+															+ "JOIN zmember m USING (mem_num) "
+															+ "WHERE b.board_num=? ORDER BY b.re_num DESC)a) "
+				+ "WHERE rnum >= ? AND rnum <= ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, board_num);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			
+			rs = pstmt.executeQuery();
+			list = new ArrayList<BoardReplyVO>();
+			while(rs.next()) {
+				BoardReplyVO reply = new BoardReplyVO();
+				reply.setRe_num(rs.getInt("re_num"));
+				//날짜 -> 1분전, 1시간전, 1일전 형식의 문자열로 변환
+				reply.setRe_date(DurationFromNow.getTimeDiffLabel(rs.getString("re_date")));
+				if(rs.getString("re_modifydate")!=null) {
+					reply.setRe_modifydate(DurationFromNow.getTimeDiffLabel(rs.getString("re_modifydate")));
+				}
+				reply.setRe_content(StringUtil.userBrNoHtml(rs.getString("re_content")));
+				reply.setBoard_num(rs.getInt("board_num"));
+				reply.setMem_num(rs.getInt("mem_num"));
+				reply.setId(rs.getString("id"));
+				
+				list.add(reply);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return list;
+	}
 	//댓글 상세
+	public BoardReplyVO getReplyBoard(int re_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		BoardReplyVO reply = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT * FROM zboard_reply WHERE re_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, re_num);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				reply = new BoardReplyVO();
+				reply.setRe_num(rs.getInt("re_num"));
+				reply.setMem_num(rs.getInt("mem_num"));
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return reply;
+	}
 	//댓글 수정
 	//댓글 삭제
+	public void deleteReplyBoard(int re_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "DELETE FROM zboard_reply WHERE re_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, re_num);
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 }
