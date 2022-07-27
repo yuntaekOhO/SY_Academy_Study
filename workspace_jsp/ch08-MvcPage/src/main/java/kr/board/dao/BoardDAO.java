@@ -292,7 +292,10 @@ public class BoardDAO {
 			pstmt.executeUpdate();
 
 			//댓글 삭제
-			
+			sql = "DELETE FROM zboard_reply WHERE board_num=?";
+			pstmt2 = conn.prepareStatement(sql);
+			pstmt2.setInt(1, board_num);
+			pstmt2.executeUpdate();
 			
 			//부모글 삭제
 			sql = "DELETE FROM zboard WHERE board_num=?";
@@ -590,6 +593,26 @@ public class BoardDAO {
 		return reply;
 	}
 	//댓글 수정
+	public void updateReplyBoard(BoardReplyVO reply)throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "UPDATE zboard_reply SET re_content=?,re_modifydate=SYSDATE,re_ip=? WHERE re_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, reply.getRe_content());
+			pstmt.setString(2, reply.getIp());
+			pstmt.setInt(3, reply.getRe_num());
+			pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	//댓글 삭제
 	public void deleteReplyBoard(int re_num)throws Exception{
 		Connection conn = null;
