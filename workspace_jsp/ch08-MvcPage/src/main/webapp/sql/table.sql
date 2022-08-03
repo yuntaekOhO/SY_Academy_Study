@@ -67,3 +67,66 @@ create table zboard_reply(
  constraint zreply_fk foreign key (mem_num) references zmember(mem_num)
 );
 create sequence zreply_seq;
+
+--상품
+create table zitem(
+ item_num number not null,
+ name varchar2(30) not null,
+ price number(8) not null,
+ quantity number(5) not null,
+ photo1 varchar2(34) not null,
+ photo2 varchar2(34) not null,
+ detail clob not null,
+ reg_date date default sysdate not null,
+ modify_date date,
+ status number(1) not null,
+ constraint zitem_pk primary key (item_num)
+);
+create sequence zitem_seq;
+
+--카트
+create table zcart(
+ cart_num number,
+ item_num number not null,
+ order_quantity number(5) not null,
+ reg_date date default sysdate not null,
+ mem_num number not null,
+ constraint zcart_pk primary key (cart_num),
+ constraint zcart_item_fk1 foreign key (itme_num) references zitem (item_num),
+ constraint zcart_item_fk2 foreign key (mem_num) references zmember (mem_num)
+);
+create sequence zcart_seq;
+
+--주문
+create table zorder(
+ order_num number not null,
+ item_name varchar2(600) not null,
+ order_total number(9) not null,
+ payment number(1) not null,
+ status number(1) default 1 not null,
+ receive_name varchar2(30) not null,
+ receive_post varchar2(5) not null,
+ receive_address1 varchar2(90) not null,
+ receive_address2 varchar2(90) not null,
+ receive_phone varchar2(15) not null,
+ notice varchar2(4000),
+ reg_date date default sysdate not null,
+ modify_date date,
+ mem_num number not null,
+ constraint zorder_pk primary key (order_num),
+ constraint zorder_fk1 foreign key (mem_num) references zmember (mem_num)
+);
+
+create sequence zorder_seq;
+
+create table zorder_detail(
+ detail_num number not null,
+ item_num number not null,
+ item_name varchar2(30) not null,
+ item_price number(8) not null,
+ item_total number(8) not null,
+ order_quantity number(7) not null,
+ order_num number not null,
+ constraint zorder_detail_pk primary key (detail_num),
+ constraint zorder_detail_fk1 foreign key (order_num) references zorder (order_num)
+);

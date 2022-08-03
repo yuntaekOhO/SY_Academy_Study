@@ -18,11 +18,17 @@
 		<li>
 			<a href="${pageContext.request.contextPath}/member/memberList.do">회원관리</a>
 		</li>
+		<li>
+		<a href="${pageContext.request.contextPath}/item/list.do">상품관리</a>
+		</li>
 		</c:if>
 		
 		<%--empty : 비어있거나 null / !empty : 비어있지않고 null도 아님--%>
 		<%-- 일반유저 로그인 성공시 MY페이지 메뉴 --%>
 		<c:if test="${!empty user_num && user_auth == 2}">
+		<li>
+			<a href="${pageContext.request.contextPath}/cart/list.do">장바구니</a>
+		</li>
 		<li>
 			<a href="${pageContext.request.contextPath}/member/myPage.do">MY페이지</a>
 		</li>
